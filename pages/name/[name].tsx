@@ -14,6 +14,7 @@ interface Props {
     pokemon: Pokemon;
 }
 const PokemonNamePage: NextPage<Props> = ({ pokemon }) => {
+    const ogImage = pokemon.sprites.other?.['official-artwork'].front_default || ""
     const [isInFavorites, setIsInFavorites] = useState(false)
     useEffect(() => {
         setIsInFavorites(localFavorites.existInFavorites(pokemon.id));
@@ -35,7 +36,7 @@ const PokemonNamePage: NextPage<Props> = ({ pokemon }) => {
         }
     }
     return (
-        <Layout title={pokemon.name}>
+        <Layout title={pokemon.name} ogImage={ogImage}>
             <Grid.Container css={{ marginTop: "5px" }} gap={2}>
                 <Grid xs={12} sm={4}>
                     <Card isHoverable css={{ padding: "30px" }}>

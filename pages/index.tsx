@@ -10,12 +10,14 @@ import useFilter from '../hooks/useFilter'
 interface Props {
   pokemons: SmallPokemon[]
 }
+const origin = (typeof window === 'undefined') ? '' : window.location.origin
 const HomePage: NextPage<Props> = ({ pokemons }) => {
   const [search, setSearch] = useState('')
   const [pokemonsData, setpokemonsData] = useState(pokemons)
   const pokemonsSearch = useFilter(pokemonsData,'name', search)
   return (
     <Layout
+      ogImage={`${origin}/img/banner.png`}
       title='Listado de Pokemones'
     >
       <Grid css={{width:"40%",margin:"1rem 0",marginLeft:"1%", minWidth:"17rem"}}>
